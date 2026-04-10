@@ -1,7 +1,8 @@
-﻿using System.Net;
-using System.Net.Http.Json;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using System.Net;
+using System.Net.Http.Json;
 
 namespace InfnetCrud.Tests;
 
@@ -14,12 +15,23 @@ public class ProductEndpointsTests : IClassFixture<WebApplicationFactory<Program
     {
         _client = factory.CreateClient();
 
-        var relativePath = "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Data\\products.json";
-        _jsonFilePath = Path.GetFullPath(relativePath);
+        var customFactory = factory.WithWebHostBuilder(builder =>
+        {
+            builder.UseEnvironment("Testing");
+        });
+
+        _client = customFactory.CreateClient();
+
+        _jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "products.json");
     }
 
     private void ResetJsonFile()
     {
+        var directory = Path.GetDirectoryName(_jsonFilePath)!;
+
+        if (!Directory.Exists(directory))
+            Directory.CreateDirectory(directory);
+
         File.WriteAllText(_jsonFilePath, "[]");
     }
 

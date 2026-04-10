@@ -27,3 +27,4 @@ C:\PessoalDev\InfnetCrud\InfenetCrud\obj\Debug\net9.0\InfenetCrud.pdb
 C:\PessoalDev\InfnetCrud\InfenetCrud\obj\Debug\net9.0\InfenetCrud.genruntimeconfig.cache
 C:\PessoalDev\InfnetCrud\InfenetCrud\obj\Debug\net9.0\ref\InfenetCrud.dll
 C:\PessoalDev\InfnetCrud\InfenetCrud\bin\Debug\net9.0\Data\products.json
+C:\PessoalDev\InfnetCrud\InfenetCrud\obj\Debug\net9.0\InfenetCrud.sourcelink.json

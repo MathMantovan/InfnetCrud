@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InfenetCrud")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7352be84bf2a7064ba6d58ba6e7a316a3c0205f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("InfenetCrud")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InfenetCrud")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

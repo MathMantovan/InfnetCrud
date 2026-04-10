@@ -1,12 +1,17 @@
 [
   {
-    "Id": "2b71ce9b-b434-40a3-8b7c-691c6a868d5c",
-    "Name": "Notebook",
-    "Price": 3500.00
+    "Id": "a3e47bf4-43d5-4116-9140-6517a8bbf992",
+    "Name": "Matheus",
+    "Price": 1000000.00
   },
   {
-    "Id": "72fed8ac-c938-4d72-8cc7-bf2a0c6e12a1",
-    "Name": "Celular",
-    "Price": 5500.00
+    "Id": "2f694bfc-fc5b-4a99-8250-5c1265c0443a",
+    "Name": "Matheus",
+    "Price": 1000000.00
+  },
+  {
+    "Id": "d54b8701-9775-4d67-b423-aa5e69184401",
+    "Name": "Mtheus",
+    "Price": 1000000.00
   }
 ]
