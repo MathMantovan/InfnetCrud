@@ -91,8 +91,8 @@ jobs:
           ${{ runner.temp }}\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
       - name: Publish app
-        run: dotnet publish ./InfnetCrud/InfnetCrud.csproj -c Release -o "${{ env.DOTNET_ROOT }}/myapp"
-
+        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
