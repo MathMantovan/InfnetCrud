@@ -1,0 +1,126 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\PessoalDev\\InfnetCrud\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0273B1A3-591E-40D7-A7EB-6B2B529E0D1A}|InfnetCrud.Tests\\InfnetCrud.Tests.csproj|c:\\pessoaldev\\infnetcrud\\infnetcrud.tests\\productendpointstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0273B1A3-591E-40D7-A7EB-6B2B529E0D1A}|InfnetCrud.Tests\\InfnetCrud.Tests.csproj|solutionrelative:infnetcrud.tests\\productendpointstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|c:\\pessoaldev\\infnetcrud\\infenetcrud\\data\\products.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|solutionrelative:infenetcrud\\data\\products.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|c:\\pessoaldev\\infnetcrud\\infenetcrud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|solutionrelative:infenetcrud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|c:\\pessoaldev\\infnetcrud\\infenetcrud\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|solutionrelative:infenetcrud\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|c:\\pessoaldev\\infnetcrud\\infenetcrud\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|solutionrelative:infenetcrud\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|c:\\pessoaldev\\infnetcrud\\infenetcrud\\infenetcrud.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{113E19F1-9297-4AB2-BFC3-2264F9F70315}|InfenetCrud\\InfenetCrud.csproj|solutionrelative:infenetcrud\\infenetcrud.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:11:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductEndpointsTests.cs",
+              "DocumentMoniker": "C:\\PessoalDev\\InfnetCrud\\InfnetCrud.Tests\\ProductEndpointsTests.cs",
+              "RelativeDocumentMoniker": "InfnetCrud.Tests\\ProductEndpointsTests.cs",
+              "ToolTip": "C:\\PessoalDev\\InfnetCrud\\InfnetCrud.Tests\\ProductEndpointsTests.cs",
+              "RelativeToolTip": "InfnetCrud.Tests\\ProductEndpointsTests.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAhwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T18:32:44.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "products.json",
+              "DocumentMoniker": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Data\\products.json",
+              "RelativeDocumentMoniker": "InfenetCrud\\Data\\products.json",
+              "ToolTip": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Data\\products.json",
+              "RelativeToolTip": "InfenetCrud\\Data\\products.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-10T18:28:52.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Repository\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "InfenetCrud\\Repository\\ProductRepository.cs",
+              "ToolTip": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Repository\\ProductRepository.cs",
+              "RelativeToolTip": "InfenetCrud\\Repository\\ProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T18:22:02.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "InfenetCrud\\Models\\Product.cs",
+              "ToolTip": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Models\\Product.cs",
+              "RelativeToolTip": "InfenetCrud\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T18:19:22.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Program.cs",
+              "RelativeDocumentMoniker": "InfenetCrud\\Program.cs",
+              "ToolTip": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\Program.cs",
+              "RelativeToolTip": "InfenetCrud\\Program.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAEAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T18:16:44.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InfenetCrud",
+              "DocumentMoniker": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\InfenetCrud.csproj",
+              "RelativeDocumentMoniker": "InfenetCrud\\InfenetCrud.csproj",
+              "ToolTip": "C:\\PessoalDev\\InfnetCrud\\InfenetCrud\\InfenetCrud.csproj",
+              "RelativeToolTip": "InfenetCrud\\InfenetCrud.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-10T18:16:35.301Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

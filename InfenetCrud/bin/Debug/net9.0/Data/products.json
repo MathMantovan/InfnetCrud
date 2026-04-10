@@ -1,0 +1,12 @@
+[
+  {
+    "Id": "2b71ce9b-b434-40a3-8b7c-691c6a868d5c",
+    "Name": "Notebook",
+    "Price": 3500.00
+  },
+  {
+    "Id": "72fed8ac-c938-4d72-8cc7-bf2a0c6e12a1",
+    "Name": "Celular",
+    "Price": 5500.00
+  }
+]
