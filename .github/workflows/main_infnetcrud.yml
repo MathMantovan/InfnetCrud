@@ -1,53 +1,119 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/action
-
-name: Build and deploy ASP.Net Core app to Azure Web App - InfnetCrud
+name: Build, test, analyze and deploy ASP.Net Core app to Azure Web App - InfnetCrud
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
   build:
+    name: Build, test and analyze
     runs-on: windows-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'zulu'
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x'
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Cache SonarQube Cloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+      - name: Cache SonarQube Cloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+
+      - name: Install SonarQube Cloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path ${{ runner.temp }}\scanner -ItemType Directory -Force
+          dotnet tool update dotnet-sonarscanner --tool-path ${{ runner.temp }}\scanner
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Begin SonarCloud analysis
+        shell: powershell
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner begin `
+            /k:"MathMantovan_InfnetCrud" `
+            /o:"mathmantovan" `
+            /d:sonar.token="${{ secrets.SONAR_TOKEN }}" `
+            /d:sonar.host.url="https://sonarcloud.io" `
+            /d:sonar.cs.vstest.reportsPaths="**/*.trx" `
+            /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run tests with coverage
+        shell: powershell
+        run: |
+          dotnet test --configuration Release --no-build `
+            --logger "trx" `
+            --results-directory ./TestResults `
+            /p:CollectCoverage=true `
+            /p:CoverletOutput=./TestResults/coverage.opencover.xml `
+            /p:CoverletOutputFormat=opencover
+
+      - name: End SonarCloud analysis
+        shell: powershell
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
+      - name: Publish app
+        run: dotnet publish ./InfnetCrud/InfnetCrud.csproj -c Release -o "${{ env.DOTNET_ROOT }}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{ env.DOTNET_ROOT }}/myapp
 
   deploy:
+    name: Deploy to Azure
     runs-on: windows-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -62,4 +128,3 @@ jobs:
           app-name: 'InfnetCrud'
           slot-name: 'Production'
           package: .
-          
