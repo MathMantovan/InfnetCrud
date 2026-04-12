@@ -10,20 +10,12 @@ on:
 
 jobs:
   build:
-    name: Build, test and analyze
     runs-on: windows-latest
     permissions:
       contents: read
 
     steps:
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'zulu'
-
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -31,6 +23,12 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x'
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'zulu'
 
       - name: Cache SonarQube Cloud packages
         uses: actions/cache@v4
@@ -54,50 +52,33 @@ jobs:
           New-Item -Path ${{ runner.temp }}\scanner -ItemType Directory -Force
           dotnet tool update dotnet-sonarscanner --tool-path ${{ runner.temp }}\scanner
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Begin SonarCloud analysis
-        shell: powershell
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          ${{ runner.temp }}\scanner\dotnet-sonarscanner begin `
-            /k:"MathMantovan_InfnetCrud" `
-            /o:"mathmantovan" `
-            /d:sonar.token="${{ secrets.SONAR_TOKEN }}" `
-            /d:sonar.host.url="https://sonarcloud.io" `
-            /d:sonar.cs.vstest.reportsPaths="TestResults/*.trx" `
-            /d:sonar.cs.opencover.reportsPaths="TestResults/coverage.opencover.xml"
-
-      - name: Build with dotnet
-        run: dotnet build --configuration Release --no-restore
-
-      - name: Run tests with coverage
+      - name: Sonar Begin
         shell: powershell
         run: |
-          dotnet test ./InfnetCrud.Tests/InfnetCrud.Tests.csproj --configuration Release --no-build `
-            --logger "trx;LogFileName=test-results.trx" `
-            --results-directory TestResults `
-            /p:CollectCoverage=true `
-            /p:CoverletOutput=TestResults/coverage.opencover.xml `
-            /p:CoverletOutputFormat=opencover
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner begin /k:"MathMantovan_InfnetCrud" /o:"mathmantovan" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
 
-      - name: Inspect test outputs
+      - name: Restore API
+        run: dotnet restore ./InfnetCrud/InfnetCrud.csproj
+
+      - name: Build API
+        run: dotnet build ./InfnetCrud/InfnetCrud.csproj --configuration Release --no-restore
+
+      - name: Executar testes com coverage
+        run: dotnet test ./InfnetCrud.Tests/InfnetCrud.Tests.csproj --configuration Release --logger trx --results-directory ./TestResults /p:CollectCoverage=true /p:CoverletOutput=./TestResults/Coverage/ /p:CoverletOutputFormat=opencover
+
+      - name: Verificar arquivos gerados
         shell: powershell
         run: |
-          Write-Host "Conteúdo da pasta TestResults:"
-          Get-ChildItem -Recurse TestResults
+          Write-Host "Arquivos encontrados em TestResults:"
+          Get-ChildItem -Recurse ./TestResults
 
-      - name: End SonarCloud analysis
+      - name: Sonar End
         shell: powershell
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           ${{ runner.temp }}\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
-      - name: Publish app
-        run: dotnet publish -c Release -o "${{ env.DOTNET_ROOT }}/myapp"
+      - name: Publish API
+        run: dotnet publish ./InfnetCrud/InfnetCrud.csproj -c Release -o "${{ env.DOTNET_ROOT }}/myapp" --no-build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -106,13 +87,12 @@ jobs:
           path: ${{ env.DOTNET_ROOT }}/myapp
 
   deploy:
-    name: Deploy to Azure
     runs-on: windows-latest
     needs: build
+    if: github.event_name != 'pull_request'
     permissions:
       id-token: write
       contents: read
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
 
     steps:
       - name: Download artifact from build job
