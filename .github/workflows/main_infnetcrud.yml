@@ -58,10 +58,10 @@ jobs:
           ${{ runner.temp }}\scanner\dotnet-sonarscanner begin /k:"MathMantovan_InfnetCrud" /o:"mathmantovan" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
 
       - name: Restore API
-        run: dotnet restore ./InfnetCrud/InfnetCrud.csproj
+        run: dotnet restore ./InfenetCrud/InfenetCrud.csproj
 
       - name: Build API
-        run: dotnet build ./InfnetCrud/InfnetCrud.csproj --configuration Release --no-restore
+        run: dotnet build ./InfenetCrud/InfenetCrud.csproj --configuration Release --no-restore
 
       - name: Executar testes com coverage
         run: dotnet test ./InfnetCrud.Tests/InfnetCrud.Tests.csproj --configuration Release --logger trx --results-directory ./TestResults /p:CollectCoverage=true /p:CoverletOutput=./TestResults/Coverage/ /p:CoverletOutputFormat=opencover
@@ -78,7 +78,7 @@ jobs:
           ${{ runner.temp }}\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
       - name: Publish API
-        run: dotnet publish ./InfnetCrud/InfnetCrud.csproj -c Release -o "${{ env.DOTNET_ROOT }}/myapp" --no-build
+        run: dotnet publish ./InfenetCrud/InfenetCrud.csproj -c Release -o "${{ env.DOTNET_ROOT }}/myapp" --no-build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
